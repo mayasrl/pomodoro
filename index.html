@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro - Timer de Produtividade</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark">
+    <header>
+        <h2 class="logo">Pomodoro</h2>
+        <button id="theme-toggle" class="theme-btn" aria-label="Alternar tema">
+            <svg class="sun-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="moon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+        </button>
+    </header>
+
+    <main class="landing-main">
+        <div class="container">
+            <div class="hero">
+                <h1 class="title-gradient">Pomodoro</h1>
+                <p class="subtitle">Aumente sua produtividade com a técnica Pomodoro e sons relaxantes. Veja seu progresso crescer com um companheiro fofo!</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card rainbow-border">
+                    <div class="feature-content">
+                        <div class="feature-icon purple-gradient">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <h3>Técnica Pomodoro</h3>
+                        <p>Trabalhe por 25 minutos focado, depois descanse por 5 minutos. A cada 4 ciclos, faça uma pausa longa de 15 minutos.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card rainbow-border">
+                    <div class="feature-content">
+                        <div class="feature-icon blue-gradient">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                            </svg>
+                        </div>
+                        <h3>Sons Ambientes</h3>
+                        <p>Escolha entre 15 sons relaxantes: chuva, floresta, café, oceano e muito mais para criar sua atmosfera perfeita de foco.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card rainbow-border">
+                    <div class="feature-content">
+                        <div class="feature-icon pink-gradient">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                <line x1="12" x2="12" y1="19" y2="22"/>
+                            </svg>
+                        </div>
+                        <h3>Companheiro de Progresso</h3>
+                        <p>Seu amiguinho começa como um ovo e evolui a cada 2 ciclos completados. Veja ele crescer até virar um bichinho majestoso!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="evolution-card rainbow-border">
+                <div class="evolution-content">
+                    <h3 class="evolution-title">Evolução do Companheiro</h3>
+                    <div class="evolution-grid">
+                        <div class="evolution-stage">
+                            <div class="pet-container" id="pet-stage-0"></div>
+                            <p>Início</p>
+                        </div>
+                        <div class="evolution-stage">
+                            <div class="pet-container" id="pet-stage-1"></div>
+                            <p>2 ciclos</p>
+                        </div>
+                        <div class="evolution-stage">
+                            <div class="pet-container" id="pet-stage-2"></div>
+                            <p>4 ciclos</p>
+                        </div>
+                        <div class="evolution-stage">
+                            <div class="pet-container" id="pet-stage-3"></div>
+                            <p>6 ciclos</p>
+                        </div>
+                        <div class="evolution-stage">
+                            <div class="pet-container" id="pet-stage-4"></div>
+                            <p>8 ciclos</p>
+                        </div>
+                        <div class="evolution-stage">
+                            <div class="pet-container" id="pet-stage-5"></div>
+                            <p>10+ ciclos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-container">
+                <a href="timer.html" class="cta-button">
+                    Começar Agora
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        Feito com 💛 por @mayasrl
+    </footer>
+
+    <script src="js/theme.js"></script>
+    <script src="js/pets.js"></script>
+</body>
+</html>
