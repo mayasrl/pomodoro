@@ -16,7 +16,7 @@ Um timer Pomodoro minimalista e elegante com sons ambientes relaxantes para ajud
 
 ## 🚀 Como Usar
 
-1. **Acesse o site**: [Seu link do GitHub Pages aqui]
+1. **Acesse o site**: https://mayasrl.github.io/pomodoro/
 2. **Configure o timer**: Ajuste os tempos de trabalho e pausas
 3. **Escolha um som**: Clique em um dos sons ambientes
 4. **Inicie o timer**: Clique em "Iniciar" e comece a trabalhar!
