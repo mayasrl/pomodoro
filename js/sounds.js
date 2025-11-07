@@ -1,24 +1,26 @@
+// Array com todos os sons ambientes disponíveis
 const sounds = [
-    { id: 'rain', name: 'Chuva', url: 'https://assets.mixkit.co/active_storage/sfx/2393/2393.wav' },
+    { id: 'rain', name: 'Chuva', url: 'https://assets.mixkit.co/active_storage/sfx/2396/2396.wav' },
     { id: 'forest', name: 'Floresta', url: 'https://assets.mixkit.co/active_storage/sfx/2462/2462.wav' },
     { id: 'cafe', name: 'Cafeteria', url: 'https://assets.mixkit.co/active_storage/sfx/2456/2456.wav' },
-    { id: 'ocean', name: 'Oceano', url: 'https://assets.mixkit.co/active_storage/sfx/2476/2476.wav' },
+    { id: 'ocean', name: 'Oceano', url: 'https://assets.mixkit.co/active_storage/sfx/2390/2390.wav' },
     { id: 'fire', name: 'Lareira', url: 'https://assets.mixkit.co/active_storage/sfx/2392/2392.wav' },
-    { id: 'birds', name: 'Pássaros', url: 'https://assets.mixkit.co/active_storage/sfx/2473/2473.wav' },
+    { id: 'birds', name: 'Pássaros', url: 'https://assets.mixkit.co/active_storage/sfx/2484/2484.wav' },
     { id: 'wind', name: 'Vento', url: 'https://assets.mixkit.co/active_storage/sfx/2395/2395.wav' },
-    { id: 'thunder', name: 'Trovão', url: 'https://assets.mixkit.co/active_storage/sfx/2398/2398.wav' },
+    { id: 'thunder', name: 'Trovão', url: 'https://assets.mixkit.co/active_storage/sfx/2390/2390.wav' },
     { id: 'stream', name: 'Riacho', url: 'https://assets.mixkit.co/active_storage/sfx/2396/2396.wav' },
     { id: 'night', name: 'Noite', url: 'https://assets.mixkit.co/active_storage/sfx/2474/2474.wav' },
-    { id: 'waterfall', name: 'Cachoeira', url: 'https://assets.mixkit.co/active_storage/sfx/2394/2394.wav' },
+    { id: 'waterfall', name: 'Cachoeira', url: 'https://assets.mixkit.co/active_storage/sfx/2513/2513.wav' },
     { id: 'campfire', name: 'Fogueira', url: 'https://assets.mixkit.co/active_storage/sfx/2477/2477.wav' },
     { id: 'crickets', name: 'Grilos', url: 'https://assets.mixkit.co/active_storage/sfx/2484/2484.wav' },
-    { id: 'waves', name: 'Ondas', url: 'https://assets.mixkit.co/active_storage/sfx/2390/2390.wav' },
+    { id: 'waves', name: 'Ondas', url: 'https://assets.mixkit.co/active_storage/sfx/1196/1196.wav' },
     { id: 'keyboard', name: 'Teclado', url: 'https://assets.mixkit.co/active_storage/sfx/2460/2460.wav' }
 ];
 
 let currentAudio = null;
 let currentSoundId = null;
 
+// Inicializa os botões de sons na interface
 function initSounds() {
     const soundsGrid = document.getElementById('sounds-grid');
     const volumeSlider = document.getElementById('volume-slider');
@@ -26,6 +28,7 @@ function initSounds() {
     
     if (!soundsGrid) return;
     
+    // Cria um botão para cada som
     sounds.forEach(sound => {
         const btn = document.createElement('button');
         btn.className = 'sound-btn';
@@ -37,6 +40,7 @@ function initSounds() {
             <span>${sound.name}</span>
         `;
         
+        // Adiciona evento de clique para tocar/parar o som
         btn.addEventListener('click', () => {
             if (currentSoundId === sound.id) {
                 stopSound();
@@ -48,6 +52,7 @@ function initSounds() {
         soundsGrid.appendChild(btn);
     });
     
+    // Controle de volume
     if (volumeSlider) {
         volumeSlider.addEventListener('input', (e) => {
             if (currentAudio) {
@@ -56,6 +61,7 @@ function initSounds() {
         });
     }
     
+    // Botão de mute
     if (muteBtn) {
         muteBtn.addEventListener('click', () => {
             if (currentAudio) {
@@ -74,19 +80,24 @@ function initSounds() {
     }
 }
 
+// Função para tocar um som
 function playSound(sound, btn) {
+    // Para o som atual se houver
     if (currentAudio) {
         currentAudio.pause();
         currentAudio.currentTime = 0;
     }
     
+    // Remove a classe active de todos os botões
     document.querySelectorAll('.sound-btn').forEach(b => b.classList.remove('active'));
     
+    // Cria e configura o novo áudio
     currentAudio = new Audio(sound.url);
     currentAudio.loop = true;
     const volumeSlider = document.getElementById('volume-slider');
     currentAudio.volume = volumeSlider ? (volumeSlider.value / 100) : 0.5;
     
+    // Toca o áudio
     currentAudio.play().then(() => {
         console.log('Som tocando:', sound.name);
     }).catch(err => {
@@ -97,6 +108,7 @@ function playSound(sound, btn) {
     btn.classList.add('active');
 }
 
+// Função para parar o som
 function stopSound() {
     if (currentAudio) {
         currentAudio.pause();
@@ -107,6 +119,7 @@ function stopSound() {
     document.querySelectorAll('.sound-btn').forEach(btn => btn.classList.remove('active'));
 }
 
+// Inicializa os sons quando a página carrega
 if (document.getElementById('sounds-grid')) {
     initSounds();
 }
