@@ -76,8 +76,8 @@ function renderPet(containerId, stage) {
     }
 }
 
-if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
+// Renderizar pets na página inicial
+if (document.getElementById('pet-stage-0')) {
     for (let i = 0; i < 6; i++) {
         renderPet(`pet-stage-${i}`, i);
     }
-}
