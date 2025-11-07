@@ -5,7 +5,6 @@ const petSVGs = [
         <ellipse cx="36" cy="35" rx="2" ry="3" fill="#E8D4B8" opacity="0.5"/>
         <path d="M25 45C25 45 28 47 32 47C36 47 39 45 39 45" stroke="#D4C4A8" stroke-width="1.5" stroke-linecap="round"/>
     </svg>`,
-    
     `<svg width="80" height="80" viewBox="0 0 64 64" fill="none">
         <ellipse cx="32" cy="38" rx="18" ry="20" fill="#FFE66D"/>
         <circle cx="28" cy="34" r="2" fill="#2C3E50"/>
@@ -14,7 +13,6 @@ const petSVGs = [
         <path d="M20 30L18 25L22 28" fill="#FFE66D"/>
         <path d="M44 30L46 25L42 28" fill="#FFE66D"/>
     </svg>`,
-    
     `<svg width="80" height="80" viewBox="0 0 64 64" fill="none">
         <ellipse cx="32" cy="36" rx="16" ry="18" fill="#FFB347"/>
         <circle cx="28" cy="32" r="2.5" fill="#2C3E50"/>
@@ -25,7 +23,6 @@ const petSVGs = [
         <ellipse cx="26" cy="34" rx="1.5" ry="1" fill="#FF9999" opacity="0.6"/>
         <ellipse cx="38" cy="34" rx="1.5" ry="1" fill="#FF9999" opacity="0.6"/>
     </svg>`,
-    
     `<svg width="80" height="80" viewBox="0 0 64 64" fill="none">
         <ellipse cx="32" cy="36" rx="18" ry="20" fill="#FFE66D"/>
         <circle cx="27" cy="32" r="3" fill="#2C3E50"/>
@@ -38,7 +35,6 @@ const petSVGs = [
         <path d="M20 50L18 55L22 52" fill="#FFB347"/>
         <path d="M44 50L46 55L42 52" fill="#FFB347"/>
     </svg>`,
-    
     `<svg width="80" height="80" viewBox="0 0 64 64" fill="none">
         <ellipse cx="32" cy="38" rx="20" ry="22" fill="#E8A87C"/>
         <circle cx="26" cy="34" r="3" fill="#2C3E50"/>
@@ -52,7 +48,6 @@ const petSVGs = [
         <path d="M18 52L16 58L20 54" fill="#D4734C"/>
         <path d="M46 52L48 58L44 54" fill="#D4734C"/>
     </svg>`,
-    
     `<svg width="80" height="80" viewBox="0 0 64 64" fill="none">
         <path d="M10 40C10 40 15 25 32 20C49 25 54 40 54 40" fill="#8B6F47"/>
         <ellipse cx="32" cy="36" rx="22" ry="18" fill="#A8D8EA"/>
@@ -69,15 +64,16 @@ const petSVGs = [
     </svg>`
 ];
 
-function renderPet(containerId, stage) {
-    const container = document.getElementById(containerId);
-    if (container) {
-        container.innerHTML = petSVGs[stage];
+function showPet(id, stage) {
+    const elem = document.getElementById(id);
+    if (elem && petSVGs[stage]) {
+        elem.innerHTML = petSVGs[stage];
     }
 }
 
-// Renderizar pets na página inicial
+// init pets na home
 if (document.getElementById('pet-stage-0')) {
     for (let i = 0; i < 6; i++) {
-        renderPet(`pet-stage-${i}`, i);
+        showPet(`pet-stage-${i}`, i);
     }
+}
