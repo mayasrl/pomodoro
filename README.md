@@ -84,11 +84,6 @@ A Técnica Pomodoro é um método de gerenciamento de tempo desenvolvido por Fra
 
 Este timer ajuda você a aplicar essa técnica de forma simples e eficaz!
 
-## 🙏 Créditos
-
-- **Sons**: [Mixkit](https://mixkit.co/) - Biblioteca gratuita de efeitos sonoros
-- **Inspiração**: Técnica Pomodoro de Francesco Cirillo
-
 ---
 
 <img width="1862" height="990" alt="Captura de tela de 2025-11-05 17-47-25" src="https://github.com/user-attachments/assets/9f3f9ecb-476f-479d-b9c5-451dba754995" />
