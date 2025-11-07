@@ -8,66 +8,66 @@ let mode = 'focus';
 let cycles = 0;
 let timerInterval = null;
 
-const timerDisplay = document.getElementById('timer');
-const playPauseBtn = document.getElementById('play-pause');
+const display = document.getElementById('timer');
+const playBtn = document.getElementById('play-pause');
 const resetBtn = document.getElementById('reset');
 const settingsBtn = document.getElementById('settings');
 const cyclesCount = document.getElementById('cycles-count');
 const currentPet = document.getElementById('current-pet');
 const modal = document.getElementById('settings-modal');
 
-const playIcon = playPauseBtn.querySelector('.play-icon');
-const pauseIcon = playPauseBtn.querySelector('.pause-icon');
+const playIcon = playBtn.querySelector('.play-icon');
+const pauseIcon = playBtn.querySelector('.pause-icon');
 
 const modeBtns = document.querySelectorAll('.mode-btn');
 
-function formatTime(seconds) {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+function formatTime(secs) {
+    const m = Math.floor(secs / 60);
+    const s = secs % 60;
+    return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
 }
 
 function updateDisplay() {
-    timerDisplay.textContent = formatTime(timeLeft);
+    display.textContent = formatTime(timeLeft);
     cyclesCount.textContent = cycles;
     updatePet();
 }
 
 function updatePet() {
-    const petStage = Math.min(Math.floor(cycles / 2), 5);
+    const stage = Math.min(Math.floor(cycles / 2), 5);
     if (currentPet && typeof petSVGs !== 'undefined') {
-        currentPet.innerHTML = petSVGs[petStage];
+        currentPet.innerHTML = petSVGs[stage];
     }
 }
 
-function startTimer() {
+function start() {
     isRunning = true;
     playIcon.style.display = 'none';
     pauseIcon.style.display = 'block';
-    timerDisplay.classList.add('running');
+    display.classList.add('running');
     
-    requestNotificationPermission();
+    requestNotif();
     
     timerInterval = setInterval(() => {
         timeLeft--;
         updateDisplay();
         
         if (timeLeft <= 0) {
-            handleTimerComplete();
+            complete();
         }
     }, 1000);
 }
 
-function pauseTimer() {
+function pause() {
     isRunning = false;
     playIcon.style.display = 'block';
     pauseIcon.style.display = 'none';
-    timerDisplay.classList.remove('running');
+    display.classList.remove('running');
     clearInterval(timerInterval);
 }
 
-function resetTimer() {
-    pauseTimer();
+function reset() {
+    pause();
     if (mode === 'focus') {
         timeLeft = focusTime * 60;
     } else if (mode === 'short') {
@@ -78,26 +78,26 @@ function resetTimer() {
     updateDisplay();
 }
 
-function handleTimerComplete() {
-    pauseTimer();
+function complete() {
+    pause();
     
     if (mode === 'focus') {
         cycles++;
         if (cycles % 4 === 0) {
-            setMode('long');
+            changeMode('long');
         } else {
-            setMode('short');
+            changeMode('short');
         }
-        showNotification('Pomodoro', 'Hora de descansar!');
+        notify('Pomodoro', 'Hora de descansar!');
     } else {
-        setMode('focus');
-        showNotification('Pomodoro', 'Hora de focar!');
+        changeMode('focus');
+        notify('Pomodoro', 'Hora de focar!');
     }
     
     updateDisplay();
 }
 
-function setMode(newMode) {
+function changeMode(newMode) {
     mode = newMode;
     modeBtns.forEach(btn => {
         btn.classList.toggle('active', btn.dataset.mode === newMode);
@@ -114,32 +114,32 @@ function setMode(newMode) {
     updateDisplay();
 }
 
-function requestNotificationPermission() {
+function requestNotif() {
     if ('Notification' in window && Notification.permission === 'default') {
         Notification.requestPermission();
     }
 }
 
-function showNotification(title, body) {
+function notify(title, body) {
     if ('Notification' in window && Notification.permission === 'granted') {
         new Notification(title, { body });
     }
 }
 
-playPauseBtn.addEventListener('click', () => {
+playBtn.addEventListener('click', () => {
     if (isRunning) {
-        pauseTimer();
+        pause();
     } else {
-        startTimer();
+        start();
     }
 });
 
-resetBtn.addEventListener('click', resetTimer);
+resetBtn.addEventListener('click', reset);
 
 modeBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         if (!isRunning) {
-            setMode(btn.dataset.mode);
+            changeMode(btn.dataset.mode);
         }
     });
 });
@@ -160,7 +160,7 @@ modal.querySelector('.btn-save').addEventListener('click', () => {
     shortBreak = parseInt(document.getElementById('short-break').value);
     longBreak = parseInt(document.getElementById('long-break').value);
     
-    resetTimer();
+    reset();
     modal.classList.remove('active');
 });
 
